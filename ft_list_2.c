@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_list_2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboia-pe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/07 20:43:11 by rboia-pe          #+#    #+#             */
+/*   Updated: 2023/10/07 20:43:13 by rboia-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push.h"
 
 t_list	*ft_prev(t_list *lst, long position)
@@ -7,12 +19,13 @@ t_list	*ft_prev(t_list *lst, long position)
 	if (lst == NULL)
 		return (NULL);
 	temp = lst;
-	while (temp->next != NULL && temp->position != position)
+	while (temp->next != NULL && 
+		temp->position != position)
 	{
 		temp->prev = temp;
 		temp = temp->next;
 	}
-	return(temp);
+	return (temp);
 }
 
 void	ft_lstclear(t_list **lst)
@@ -21,11 +34,10 @@ void	ft_lstclear(t_list **lst)
 
 	if (!lst)
 		return ;
-
 	while (*lst)
 	{
 		temp = (*lst)->next;
-		free(*lst);		
+		free (*lst);
 		*lst = temp;
 	}
 	*lst = NULL;
@@ -40,7 +52,6 @@ t_list	*ft_lstcopy(t_list *lst)
 		return (NULL);
 	new = NULL;
 	lst_tmp = lst;
-	
 	while (lst_tmp)
 	{
 		ft_lstadd_back(&new, ft_lstnew(lst_tmp->content), lst_tmp->content);

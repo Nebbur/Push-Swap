@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_list_1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboia-pe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/07 20:42:56 by rboia-pe          #+#    #+#             */
+/*   Updated: 2023/10/07 20:43:00 by rboia-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push.h"
 
 t_list	*ft_lstlast(t_list *lst, long number, bool booleana)
@@ -23,6 +35,7 @@ t_list	*ft_lstlast(t_list *lst, long number, bool booleana)
 void	ft_lstadd_back(t_list **lst, t_list *new, long number)
 {
 	t_list	*temp;
+
 	if (!lst || !new)
 		return ;
 	if (!*lst)

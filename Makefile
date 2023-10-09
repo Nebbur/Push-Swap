@@ -2,12 +2,13 @@
 
 NAME    = push_swap
 
-SRCS    = ft_sort.c ft_sort_five.c pushswap.c operations.c \
+SRCS    = ft_sort.c ft_sort_five.c pushswap.c\
 			ft_split.c  manager.c manager_2.c\
-			ft_list_1.c ft_list_2.c ft_list_3.c
+			ft_list_1.c ft_list_2.c ft_list_3.c\
+			operation_swap.c operation_reverse.c\
+			operation_push.c operation_rotate.c
 
 OBJS    = ${SRCS:.c=.o}
-
 
 CFLAGS	= -Wall -Wextra -Werror
 CL = ar -rcs
@@ -33,4 +34,4 @@ re: fclean all
 author:
 		@printf "rboia-pe\n"
 
-.PHONY: clean fclean norm all bonus re author
+.PHONY: clean fclean all bonus re author

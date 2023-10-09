@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboia-pe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/07 20:45:53 by rboia-pe          #+#    #+#             */
+/*   Updated: 2023/10/07 20:45:54 by rboia-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_H
 # define PUSH_H
 
@@ -7,12 +19,14 @@
 # include <limits.h>
 # include <stdbool.h>
 
-typedef struct		s_list
+# include <stdio.h>
+
+typedef struct s_list
 {
-    long				content;
+	long				content;
 	long				position;
-    struct s_list	*next;
-	struct s_list	*prev;
+	struct s_list		*next;
+	struct s_list		*prev;
 }					t_list;
 
 typedef struct s_data
@@ -32,8 +46,8 @@ typedef struct s_data
 
 /*_________SWAP_________*/
 
-void    sa(t_list **stack_a, int booleana);
-void    sb(t_list **stack_b, int booleana);
+void	sa(t_list **stack_a, int booleana);
+void	sb(t_list **stack_b, int booleana);
 void	ss(t_list **stack_a, t_list **stack_b);
 /*_________PUSH_________*/
 
@@ -46,11 +60,11 @@ void	rb(t_list **stack_b, int booleana);
 void	rr(t_list **stack_a, t_list **stack_b);
 /*_________REVERSE ROTATE_________*/
 
-void	rra (t_list **stack_a, int booleana);
-void	rrb (t_list **stack_b, int booleana);
-void	rrr (t_list **stack_a, t_list **stack_b);
+void	rra(t_list **stack_a, int booleana);
+void	rrb(t_list **stack_b, int booleana);
+void	rrr(t_list **stack_a, t_list **stack_b);
 
-void    ft_plusdecinq(t_list **stack_a, t_list **stack_b, t_data *st);
+void	ft_plusdecinq(t_list **stack_a, t_list **stack_b, t_data *st);
 
 //LIST
 
@@ -58,16 +72,16 @@ void	ft_lstadd_back(t_list **lst, t_list *new, long number);
 void	ft_lstadd_front(t_list *lst, t_list *new);
 void	ft_lstclear(t_list **lst);
 void	ft_lstdelone(t_list **lst, t_list *to_del);
-int	ft_lstsorted(t_list *lst);
-int	ft_lstsize(t_list *lst);
-int	ft_lstdistance(t_list **head, int position, bool is_position);
-int	ft_lst_lastdistance(t_list **head, int position, bool is_position);
+int		ft_lstsorted(t_list *lst);
+int		ft_lstsize(t_list *lst);
+int		ft_lstdistance(t_list **head, int position, bool is_position);
+int		ft_lst_lastdistance(t_list **head, int position, bool is_position);
 t_list	*ft_lstlast(t_list *lst, long number, bool booleana);
 t_list	*ft_lstnew(long content);
 t_list	*ft_lstcopy(t_list *lst);
 t_list	*ft_smallest_number(t_list *lst);
 t_list	*ft_bigger_number(t_list *lst);
-t_list	*ft_second_bigger_number(t_list *lst);
+t_list	*ft_2_bigger_number(t_list *lst);
 
 //aux
 void	ft_find_pivot(t_list *lst, t_data *st);
@@ -79,7 +93,7 @@ long	ft_find_position_through_content(t_list *lst, long content);
 long	ft_find_content_through_position(t_list *lst, long position);
 bool	is_on_the_list(t_list *lst, long position);
 bool	ft_is_on_the_list(t_list *lst, long content);
-int	ft_strlen(const char *str);
+int		ft_strlen(const char *str);
 char	**ft_split(char const *s, char c);
 t_list	*split_args(t_list *lst, char *av, char c, t_data *st);
 t_list	*ft_prev(t_list *lst, long position);
@@ -88,5 +102,7 @@ t_list	*ft_prev(t_list *lst, long position);
 void	ft_sort_a(t_list **stack_a, t_list **stack_b, t_data *st);
 void	ft_sort_b(t_list **stack_a, t_list **stack_b);
 void	ft_sort_five(t_list **stack_a, t_list **stack_b);
+
+void	ft_printlist(t_list *stack_a, t_list *stack_b);
 
 #endif

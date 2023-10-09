@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboia-pe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/07 20:44:13 by rboia-pe          #+#    #+#             */
+/*   Updated: 2023/10/07 20:44:14 by rboia-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push.h"
 
 t_list	*split_args(t_list *lst, char *av, char c, t_data *st)
@@ -9,7 +21,8 @@ t_list	*split_args(t_list *lst, char *av, char c, t_data *st)
 	tmp = ft_split(av, c);
 	while (tmp[++i])
 	{
-		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(tmp[i], true, st)), ft_atoi(av, false, st));	
+		ft_lstadd_back(&lst, ft_lstnew(ft_atoi(tmp[i], true, st)), 
+			ft_atoi(av, false, st));
 		free(tmp[i]);
 	}
 	free(tmp[i]);
@@ -54,7 +67,7 @@ static char	**ft_helper(char const *s, char c, char **result)
 {
 	int	i;
 	int	j;
-	int		start;
+	int	start;
 
 	i = 0;
 	j = 0;

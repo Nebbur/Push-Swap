@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manager_2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboia-pe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/07 20:45:09 by rboia-pe          #+#    #+#             */
+/*   Updated: 2023/10/07 20:45:10 by rboia-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push.h"
 
 bool	ft_is_on_the_list(t_list *lst, long position)
@@ -21,7 +33,6 @@ void	ft_find_pivot(t_list *lst, t_data *st)
 		st->split = 8;
 	st->pivot = ft_lstsize(lst) / st->split;
 	st->initial_size_a = ft_lstsize(lst);
-
 	if (ft_lstsize(lst) % 2 == 0)
 		st->pivot_aux = 0;
 	else
@@ -40,7 +51,7 @@ int	ft_strlen(const char *str)
 
 //RETURN 0 IF THE LIST IS SORTED
 int	ft_lstsorted(t_list *lst)
-{	
+{
 	t_list	*temporary;
 
 	if (lst == NULL)

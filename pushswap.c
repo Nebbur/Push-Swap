@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pushswap.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rboia-pe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/07 20:45:46 by rboia-pe          #+#    #+#             */
+/*   Updated: 2023/10/07 20:45:47 by rboia-pe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push.h"
 
 long	ft_atoi(const char *str, bool booleana, t_data *st)
@@ -8,8 +20,9 @@ long	ft_atoi(const char *str, bool booleana, t_data *st)
 	result = -1;
 	sign = 1;
 	while (booleana == true && str[++result])
-		if (!(str[result] >= 48 && str[result] <= 57) && !(*str == 45 || *str == 43))
-				st->error = 2;
+		if (!(str[result] >= 48 && str[result] <= 57) 
+			&& !(*str == 45 || *str == 43))
+			st->error = 2;
 	result = 0;
 	if (*str == 45)
 		sign *= -1;
@@ -21,7 +34,8 @@ long	ft_atoi(const char *str, bool booleana, t_data *st)
 			result = result * 10 + *str - 48;
 		str++;
 	}
-	if ((result >= 2147483648 && sign == 1) || (result > 2147483648 && sign == -1))
+	if ((result >= 2147483648 && sign == 1) || 
+		(result > 2147483648 && sign == -1))
 		st->error = 2;
 	return (result * sign);
 }
@@ -52,42 +66,49 @@ void	ft_organize_numbers(t_list **stack_a)
 	ft_lstclear(&stack_tmp);
 }
 
-int main (int ac, char **ag)
+static void	get_arg(char **ag, t_list **stack_a, t_data *st)
 {
-	t_list  *stack_a;
-	t_list  *stack_b;
-	t_data	st;
-	int     i;
-	int		j;
+	int	i;
+	int	j;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	st.error = 1;
 	i = 0;
-	if (ac < 2)
-		return (1);
 	while (ag[++i])
 	{
 		j = -1;
-		st.count = 0;
+		st->count = 0;
 		while (ag[i][++j])
 		{
 			if (ag[i][j] == 32 || (ag[i][j] >= 9 && ag[i][j] <= 13))
 			{
-				st.count = 1;
-				stack_a = split_args(stack_a, ag[i], ag[i][j], &st);
-				break;;
+				st->count = 1;
+				*stack_a = split_args(*stack_a, ag[i], ag[i][j], st);
+				break ;
 			}
 		}
-		if(st.count == 0)
-			ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(ag[i], true, &st)), ft_atoi(ag[i], false, &st));
+		if (st->count == 0)
+			ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(ag[i], true, st)), 
+				ft_atoi(ag[i], false, st));
 	}
+}
+
+int	main(int ac, char **ag)
+{
+	t_list	*stack_a;
+	t_list	*stack_b;
+	t_data	st;
+
+	stack_a = NULL;
+	stack_b = NULL;
+	st.error = 1;
+	if (ac < 2)
+		return (1);
+	get_arg(ag, &stack_a, &st);
 	if (st.error == 2)
 		ft_exit(stack_a);
 	ft_organize_numbers(&stack_a);
 	ft_find_pivot(stack_a, &st);
-	if (ft_lstsize(*&stack_a) <= 5)
+	if (ft_lstsize(*&stack_a) <= 5 && ft_lstsorted(stack_a) != 0)
 		ft_sort_five(&stack_a, &stack_b);
-	else
+	else if (ft_lstsize(*&stack_a) > 5 && ft_lstsorted(stack_a) != 0)
 		ft_plusdecinq(&stack_a, &stack_b, &st);
 }
